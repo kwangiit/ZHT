@@ -311,6 +311,69 @@ class Package : public ::google::protobuf::Message {
   inline ::std::string* mutable_wifecode();
   inline ::std::string* release_wifecode();
   
+  // optional bool ackid = 24;
+  inline bool has_ackid() const;
+  inline void clear_ackid();
+  static const int kAckidFieldNumber = 24;
+  inline bool ackid() const;
+  inline void set_ackid(bool value);
+  
+  // repeated uint32 t_id = 25;
+  inline int t_id_size() const;
+  inline void clear_t_id();
+  static const int kTIdFieldNumber = 25;
+  inline ::google::protobuf::uint32 t_id(int index) const;
+  inline void set_t_id(int index, ::google::protobuf::uint32 value);
+  inline void add_t_id(::google::protobuf::uint32 value);
+  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+      t_id() const;
+  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+      mutable_t_id();
+  
+  // repeated string cid = 26;
+  inline int cid_size() const;
+  inline void clear_cid();
+  static const int kCidFieldNumber = 26;
+  inline const ::std::string& cid(int index) const;
+  inline ::std::string* mutable_cid(int index);
+  inline void set_cid(int index, const ::std::string& value);
+  inline void set_cid(int index, const char* value);
+  inline void set_cid(int index, const char* value, size_t size);
+  inline ::std::string* add_cid();
+  inline void add_cid(const ::std::string& value);
+  inline void add_cid(const char* value);
+  inline void add_cid(const char* value, size_t size);
+  inline const ::google::protobuf::RepeatedPtrField< ::std::string>& cid() const;
+  inline ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_cid();
+  
+  // repeated string desc = 27;
+  inline int desc_size() const;
+  inline void clear_desc();
+  static const int kDescFieldNumber = 27;
+  inline const ::std::string& desc(int index) const;
+  inline ::std::string* mutable_desc(int index);
+  inline void set_desc(int index, const ::std::string& value);
+  inline void set_desc(int index, const char* value);
+  inline void set_desc(int index, const char* value, size_t size);
+  inline ::std::string* add_desc();
+  inline void add_desc(const ::std::string& value);
+  inline void add_desc(const char* value);
+  inline void add_desc(const char* value, size_t size);
+  inline const ::google::protobuf::RepeatedPtrField< ::std::string>& desc() const;
+  inline ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_desc();
+  
+  // repeated uint32 nmoves = 28;
+  inline int nmoves_size() const;
+  inline void clear_nmoves();
+  static const int kNmovesFieldNumber = 28;
+  inline ::google::protobuf::uint32 nmoves(int index) const;
+  inline void set_nmoves(int index, ::google::protobuf::uint32 value);
+  inline void add_nmoves(::google::protobuf::uint32 value);
+  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+      nmoves() const;
+  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+      mutable_nmoves();
+  
   // @@protoc_insertion_point(class_scope:Package)
  private:
   inline void set_has_virtualpath();
@@ -355,6 +418,8 @@ class Package : public ::google::protobuf::Message {
   inline void clear_has_asneighbor();
   inline void set_has_wifecode();
   inline void clear_has_wifecode();
+  inline void set_has_ackid();
+  inline void clear_has_ackid();
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
@@ -378,12 +443,17 @@ class Package : public ::google::protobuf::Message {
   ::std::string* gmembership_;
   ::std::string* asneighbor_;
   ::std::string* wifecode_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > t_id_;
+  ::google::protobuf::RepeatedPtrField< ::std::string> cid_;
+  ::google::protobuf::RepeatedPtrField< ::std::string> desc_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > nmoves_;
   bool isdir_;
   bool uprange_;
   bool isfwdmsg_;
+  bool ackid_;
   
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(23 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(28 + 31) / 32];
   
   friend void  protobuf_AddDesc_meta_2eproto();
   friend void protobuf_AssignDesc_meta_2eproto();
@@ -1360,6 +1430,166 @@ inline ::std::string* Package::release_wifecode() {
     wifecode_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
     return temp;
   }
+}
+
+// optional bool ackid = 24;
+inline bool Package::has_ackid() const {
+  return (_has_bits_[0] & 0x00800000u) != 0;
+}
+inline void Package::set_has_ackid() {
+  _has_bits_[0] |= 0x00800000u;
+}
+inline void Package::clear_has_ackid() {
+  _has_bits_[0] &= ~0x00800000u;
+}
+inline void Package::clear_ackid() {
+  ackid_ = false;
+  clear_has_ackid();
+}
+inline bool Package::ackid() const {
+  return ackid_;
+}
+inline void Package::set_ackid(bool value) {
+  set_has_ackid();
+  ackid_ = value;
+}
+
+// repeated uint32 t_id = 25;
+inline int Package::t_id_size() const {
+  return t_id_.size();
+}
+inline void Package::clear_t_id() {
+  t_id_.Clear();
+}
+inline ::google::protobuf::uint32 Package::t_id(int index) const {
+  return t_id_.Get(index);
+}
+inline void Package::set_t_id(int index, ::google::protobuf::uint32 value) {
+  t_id_.Set(index, value);
+}
+inline void Package::add_t_id(::google::protobuf::uint32 value) {
+  t_id_.Add(value);
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+Package::t_id() const {
+  return t_id_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+Package::mutable_t_id() {
+  return &t_id_;
+}
+
+// repeated string cid = 26;
+inline int Package::cid_size() const {
+  return cid_.size();
+}
+inline void Package::clear_cid() {
+  cid_.Clear();
+}
+inline const ::std::string& Package::cid(int index) const {
+  return cid_.Get(index);
+}
+inline ::std::string* Package::mutable_cid(int index) {
+  return cid_.Mutable(index);
+}
+inline void Package::set_cid(int index, const ::std::string& value) {
+  cid_.Mutable(index)->assign(value);
+}
+inline void Package::set_cid(int index, const char* value) {
+  cid_.Mutable(index)->assign(value);
+}
+inline void Package::set_cid(int index, const char* value, size_t size) {
+  cid_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* Package::add_cid() {
+  return cid_.Add();
+}
+inline void Package::add_cid(const ::std::string& value) {
+  cid_.Add()->assign(value);
+}
+inline void Package::add_cid(const char* value) {
+  cid_.Add()->assign(value);
+}
+inline void Package::add_cid(const char* value, size_t size) {
+  cid_.Add()->assign(reinterpret_cast<const char*>(value), size);
+}
+inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
+Package::cid() const {
+  return cid_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::std::string>*
+Package::mutable_cid() {
+  return &cid_;
+}
+
+// repeated string desc = 27;
+inline int Package::desc_size() const {
+  return desc_.size();
+}
+inline void Package::clear_desc() {
+  desc_.Clear();
+}
+inline const ::std::string& Package::desc(int index) const {
+  return desc_.Get(index);
+}
+inline ::std::string* Package::mutable_desc(int index) {
+  return desc_.Mutable(index);
+}
+inline void Package::set_desc(int index, const ::std::string& value) {
+  desc_.Mutable(index)->assign(value);
+}
+inline void Package::set_desc(int index, const char* value) {
+  desc_.Mutable(index)->assign(value);
+}
+inline void Package::set_desc(int index, const char* value, size_t size) {
+  desc_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* Package::add_desc() {
+  return desc_.Add();
+}
+inline void Package::add_desc(const ::std::string& value) {
+  desc_.Add()->assign(value);
+}
+inline void Package::add_desc(const char* value) {
+  desc_.Add()->assign(value);
+}
+inline void Package::add_desc(const char* value, size_t size) {
+  desc_.Add()->assign(reinterpret_cast<const char*>(value), size);
+}
+inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
+Package::desc() const {
+  return desc_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::std::string>*
+Package::mutable_desc() {
+  return &desc_;
+}
+
+// repeated uint32 nmoves = 28;
+inline int Package::nmoves_size() const {
+  return nmoves_.size();
+}
+inline void Package::clear_nmoves() {
+  nmoves_.Clear();
+}
+inline ::google::protobuf::uint32 Package::nmoves(int index) const {
+  return nmoves_.Get(index);
+}
+inline void Package::set_nmoves(int index, ::google::protobuf::uint32 value) {
+  nmoves_.Set(index, value);
+}
+inline void Package::add_nmoves(::google::protobuf::uint32 value) {
+  nmoves_.Add(value);
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+Package::nmoves() const {
+  return nmoves_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+Package::mutable_nmoves() {
+  return &nmoves_;
 }
 
 

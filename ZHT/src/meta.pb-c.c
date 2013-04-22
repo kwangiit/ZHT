@@ -49,7 +49,7 @@ void   package__free_unpacked
   PROTOBUF_C_ASSERT (message->base.descriptor == &package__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor package__field_descriptors[23] =
+static const ProtobufCFieldDescriptor package__field_descriptors[28] =
 {
   {
     "virtualPath",
@@ -327,10 +327,73 @@ static const ProtobufCFieldDescriptor package__field_descriptors[23] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "ackid",
+    24,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_BOOL,
+    PROTOBUF_C_OFFSETOF(Package, has_ackid),
+    PROTOBUF_C_OFFSETOF(Package, ackid),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "t_id",
+    25,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_UINT32,
+    PROTOBUF_C_OFFSETOF(Package, n_t_id),
+    PROTOBUF_C_OFFSETOF(Package, t_id),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "cid",
+    26,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_STRING,
+    PROTOBUF_C_OFFSETOF(Package, n_cid),
+    PROTOBUF_C_OFFSETOF(Package, cid),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "desc",
+    27,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_STRING,
+    PROTOBUF_C_OFFSETOF(Package, n_desc),
+    PROTOBUF_C_OFFSETOF(Package, desc),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "nmoves",
+    28,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_UINT32,
+    PROTOBUF_C_OFFSETOF(Package, n_nmoves),
+    PROTOBUF_C_OFFSETOF(Package, nmoves),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned package__field_indices_by_name[] = {
   8,   /* field[8] = Operation */
+  23,   /* field[23] = ackid */
   21,   /* field[21] = asneighbor */
+  25,   /* field[25] = cid */
+  26,   /* field[26] = desc */
   19,   /* field[19] = gmembership */
   4,   /* field[4] = isDir */
   20,   /* field[20] = isfwdmsg */
@@ -340,6 +403,7 @@ static const unsigned package__field_indices_by_name[] = {
   18,   /* field[18] = migringpos */
   7,   /* field[7] = mode */
   3,   /* field[3] = newFullPath */
+  27,   /* field[27] = nmoves */
   1,   /* field[1] = num */
   10,   /* field[10] = opcode */
   6,   /* field[6] = openMode */
@@ -348,6 +412,7 @@ static const unsigned package__field_indices_by_name[] = {
   9,   /* field[9] = replicaNo */
   16,   /* field[16] = rfname */
   14,   /* field[14] = sourceZHT */
+  24,   /* field[24] = t_id */
   15,   /* field[15] = targetZHT */
   13,   /* field[13] = uprange */
   0,   /* field[0] = virtualPath */
@@ -356,7 +421,7 @@ static const unsigned package__field_indices_by_name[] = {
 static const ProtobufCIntRange package__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 23 }
+  { 0, 28 }
 };
 const ProtobufCMessageDescriptor package__descriptor =
 {
@@ -366,7 +431,7 @@ const ProtobufCMessageDescriptor package__descriptor =
   "Package",
   "",
   sizeof(Package),
-  23,
+  28,
   package__field_descriptors,
   package__field_indices_by_name,
   1,  package__number_ranges,

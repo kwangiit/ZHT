@@ -185,20 +185,6 @@ int handleRequest(int sock, void*buff) {
  }
  */
 
-int32_t HB_compare_and_swap(NoVoHT *map, Package &package)
-{
-	string curStr = HB_lookup(map, package);
-	string seenStr = package.realfullpath();
-	if (!curStr.compare(seenStr))
-	{
-		package.set_realfullpath(package.newfullpath());
-		return HB_insert(map, package);
-	}
-	else
-	{
-		return -5;
-	}
-}
 
 int32_t HB_insert(NoVoHT *map, Package &package) {
 	//int opt = package.operation();//opt not be used?
@@ -275,6 +261,21 @@ int32_t HB_remove(NoVoHT *map, Package &package) {
 /*bool eqstr(char *s1, char *s2) {
  return strcmp(s1, s2) == 0;
  }*/
+
+int32_t HB_compare_and_swap(NoVoHT *map, Package &package)
+{
+	string curStr = HB_lookup(map, package);
+	string seenStr = package.realfullpath();
+	if (!curStr.compare(seenStr))
+	{
+		package.set_realfullpath(package.newfullpath());
+		return HB_insert(map, package);
+	}
+	else
+	{
+		return -5;
+	}
+}
 
 struct charscmp: public std::binary_function<const char*, const char*, bool> {
 	bool operator()(const char* s1, const char* s2) const {
@@ -415,8 +416,6 @@ int32_t HB_remove(map<string, string> &hmap, Package &package) {
 	return 0;
 
 }
-
-int32_t HB_compare_and_swap()
 
 struct threaddata {
 	int socket;
