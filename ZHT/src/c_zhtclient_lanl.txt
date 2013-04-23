@@ -1,0 +1,33 @@
+The following is sequence you need to run this test case.
+
+1. to insert 1000 nodes, run 
+./c_zhtclient_lanl -n neighbor -z zht.cfg -p TCP -i
+
+2. to allocate nods by comp_swap, run
+parallel sh -c "./c_zhtclient_lanl -n neighbor -z zht.cfg -p TCP" -- 1 2
+parallel sh -c "./c_zhtclient_lanl -n neighbor -z zht.cfg -p TCP" -- 1 2 3 4
+parallel sh -c "./c_zhtclient_lanl -n neighbor -z zht.cfg -p TCP" -- 1 2 3 4 5 6
+parallel sh -c "./c_zhtclient_lanl -n neighbor -z zht.cfg -p TCP" -- 1 2 3 4 5 6 7 8 9
+
+/*
+=> you may probably have parallel not installed, run sudo apt-get install moreutils
+
+=> I changed the startup arguments only for this test programs, e.g. ./c_zhtclient_lanl -n neighbor -z zht.cfg -p TCP
+   to see the usage, run ./c_zhtclient_lanl or ./c_zhtclient_lanl -h
+
+=> parallel sh -c "./c_zhtclient_lanl -n neighbor -z zht.cfg -p TCP" -- 1 2
+   
+   -- 1 2, means to run c_zhtclient in two processes in parallel, this emulates two concurrent clients that invoke com_swap
+   -- similarly, 1 2 3, means in three processes in parallel
+   -- ...
+
+=> parallel util is used here, just because I have to protect the shared variables(resulting in sequentially access somehow) 
+   by meams of multi-threaded invocation of com_swap, not really emulate concurrent clients that invokes com_swap  
+*/
+
+
+3 to make sure the nodes available finally, run 
+
+./c_zhtclient_lanl -n neighbor -z zht.cfg -p TCP -l
+
+

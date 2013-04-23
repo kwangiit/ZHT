@@ -185,7 +185,6 @@ int handleRequest(int sock, void*buff) {
  }
  */
 
-
 int32_t HB_insert(NoVoHT *map, Package &package) {
 	//int opt = package.operation();//opt not be used?
 	string value = package.SerializeAsString();
@@ -262,17 +261,36 @@ int32_t HB_remove(NoVoHT *map, Package &package) {
  return strcmp(s1, s2) == 0;
  }*/
 
-int32_t HB_compare_and_swap(NoVoHT *map, Package &package)
-{
-	string curStr = HB_lookup(map, package);
-	string seenStr = package.realfullpath();
-	if (!curStr.compare(seenStr))
-	{
+int32_t HB_compare_and_swap(NoVoHT *map, Package &package) {
+
+	/*get Package stored by lookup*/
+	string lresult = HB_lookup(map, package);
+	Package lpackage;
+	lpackage.ParseFromString(lresult);
+
+	/*get seen_value stored*/
+	string seen_value_stored = lpackage.realfullpath();
+
+	string seen_value_pass_in = package.realfullpath();
+
+	/*they are equivalent*/
+	if (!seen_value_stored.compare(seen_value_pass_in)) {
+
 		package.set_realfullpath(package.newfullpath());
 		return HB_insert(map, package);
+
+	} else {
+		return -5;
 	}
-	else
-	{
+}
+
+int32_t HB_compare_and_swap_(NoVoHT *map, Package &package) {
+	string curStr = HB_lookup(map, package);
+	string seenStr = package.realfullpath();
+	if (!curStr.compare(seenStr)) {
+		package.set_realfullpath(package.newfullpath());
+		return HB_insert(map, package);
+	} else {
 		return -5;
 	}
 }
@@ -728,33 +746,27 @@ void dataService(int client_sock, void* buff, size_t bufsize,
 	}
 		break;
 
-	case 5:		// compare and swap operation
-		{
-			if (package.virtualpath().empty())
-			{
-				operation_status = -1;
-			}
-			else
-			{
-				operation_status = HB_compare_and_swap(pmap, package);
-			}
-			buff1 = &operation_status;
-			if (TCP == true)
-			{
-				r = send(client_sock, &operation_status, sizeof(int32_t), 0);
-			}
-			else
-			{
-				r = sendto(client_sock, &operation_status, sizeof(int32_t), 0,
-								(struct sockaddr *) &fromAddr, sizeof(struct sockaddr));
-			}
-
-			if (r <= 0)
-			{
-				cout<< "compare_and_swap: Server could not send acknowledgement to client: sendto r = "
-								<< r << endl;
-			}
+	case 5: // compare and swap operation
+	{
+		if (package.virtualpath().empty()) {
+			operation_status = -1;
+		} else {
+			operation_status = HB_compare_and_swap(pmap, package);
 		}
+		buff1 = &operation_status;
+		if (TCP == true) {
+			r = send(client_sock, &operation_status, sizeof(int32_t), 0);
+		} else {
+			r = sendto(client_sock, &operation_status, sizeof(int32_t), 0,
+					(struct sockaddr *) &fromAddr, sizeof(struct sockaddr));
+		}
+
+		if (r <= 0) {
+			cout
+					<< "compare_and_swap: Server could not send acknowledgement to client: sendto r = "
+					<< r << endl;
+		}
+	}
 		break;
 
 	case 99: { //shut the server
