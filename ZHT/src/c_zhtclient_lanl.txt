@@ -3,7 +3,7 @@ The following is sequence you need to run this test case.
 1. to insert 1000 nodes, run 
 ./c_zhtclient_lanl -n neighbor -z zht.cfg -p TCP -i
 
-2. to allocate nods by comp_swap, run
+2. to allocate nodes by comp_swap, run
 parallel sh -c "./c_zhtclient_lanl -n neighbor -z zht.cfg -p TCP" -- 1 2
 parallel sh -c "./c_zhtclient_lanl -n neighbor -z zht.cfg -p TCP" -- 1 2 3 4
 parallel sh -c "./c_zhtclient_lanl -n neighbor -z zht.cfg -p TCP" -- 1 2 3 4 5 6

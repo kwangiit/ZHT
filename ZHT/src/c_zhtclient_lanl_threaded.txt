@@ -1,0 +1,30 @@
+The following is sequence you need to run this test case. You can also only run step 2 to see the effects.
+
+1. to insert 1000 nodes, run 
+./c_zhtclient_lanl_threaded -n neighbor -z zht.cfg -p TCP -i
+
+2. to concurrently allocate nodes by comp_and_swap, run
+./c_zhtclient_lanl_threaded -n neighbor -z zht.cfg -p TCP
+
+/*
+=> I changed the startup arguments only for this test programs, e.g. ./c_zhtclient_lanl_threaded -n neighbor -z zht.cfg -p TCP
+   to see the usage, run 
+   ./c_zhtclient_lanl_threaded or 
+   ./c_zhtclient_lanl_threaded -h 
+*/
+
+
+3 to to check nodes finally available, run 
+
+./c_zhtclient_lanl_threaded -n neighbor -z zht.cfg -p TCP -l
+
+
+###########special attention###########
+1. Since the ZHT Client API is not thread-safe, this testcase is a expediency to make sure your use case works
+(if based on the code here), at least. 
+
+2. I used the criticial section to make sure your application is thread-safe, although ZHT Client API is not.
+
+3. copy the code and adjust it on your demand, but take care the critical section code.
+
+

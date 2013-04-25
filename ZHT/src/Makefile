@@ -1,11 +1,14 @@
 
-TARGETS = zht_c_binding zht_benchmark zht_server c_zhtclient_lanl
+TARGETS = zht_c_binding zht_benchmark zht_server c_zhtclient_lanl c_zhtclient_lanl_threaded
 CC = gcc
 CCFLAGS = -g -I${USER_INCLUDE} -L${USER_LIB}
 LIBFLAGS = -lstdc++ -lrt -lpthread -lm -lc -lprotobuf -lprotobuf-c
 
 all:	$(TARGETS)
 	
+
+c_zhtclient_lanl_threaded: c_zhtclient_lanl_threaded.o c_zhtclient.o c_zhtclientStd.o cpp_zhtclient.o meta.pb-c.o lru_cache.o meta.pb.o net_util.o novoht.o zht_util.o
+	$(CC) $(CCFLAGS) -o $@ $^ $(LIBFLAGS)
 
 c_zhtclient_lanl: c_zhtclient_lanl.o c_zhtclient.o c_zhtclientStd.o cpp_zhtclient.o meta.pb-c.o lru_cache.o meta.pb.o net_util.o novoht.o zht_util.o
 	$(CC) $(CCFLAGS) -o $@ $^ $(LIBFLAGS)
@@ -32,6 +35,7 @@ zht_server: server_general.o meta.pb-c.o lru_cache.o meta.pb.o net_util.o novoht
 	$(CC) $(CCFLAGS) -c $< $^ $(LIBFLAGS)
 
 
+c_zhtclient_lanl_threaded.o: c_zhtclient_lanl_threaded.c
 c_zhtclient_lanl.o:		c_zhtclient_lanl.c
 c_zhtclient_main.o:		c_zhtclient_main.c
 c_zhtclient.o:			c_zhtclient.cpp
