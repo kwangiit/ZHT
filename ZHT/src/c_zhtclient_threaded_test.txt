@@ -1,0 +1,26 @@
+This file is to let you know how to run the testcase(c_zhtclient_threaded_test.c) for ZHT API with multi-thread support.
+
+1. make
+
+2. too see usage, run ./c_zhtclient_threaded_test or ./c_zhtclient_threaded_test -h
+
+Usage:
+./c_zhtclient_threaded_test {-t concurrent_threads -n neighbor -z zht.cfg -p {TCP|UDP} {-i(insert) | -r(remove) | -l(lookup) | -a(append) | -c(commpare_and_swap) } | [-h(help)]
+
+for example in real tests:
+a) to run insert/remove/lookup/append/comp_swap concurrently, each run by 10 threads
+./c_zhtclient_threaded_test -t 10 -n neighbor -z zht.cfg -p TCP -i -r -l -a -c
+
+b) to run insert/remove/lookup/append concurrently, each run by 10 threads
+./c_zhtclient_threaded_test -t 10 -n neighbor -z zht.cfg -p TCP -i -r -l -a
+
+c) to run insert/remove/lookup concurrently, each run by 10 threads
+./c_zhtclient_threaded_test -t 10 -n neighbor -z zht.cfg -p TCP -i -r -l
+
+d) to run insert/remove concurrently, each run by 10 threads
+./c_zhtclient_threaded_test -t 10 -n neighbor -z zht.cfg -p TCP -i -r
+
+e) to run insert concurrently, each run by 10 threads
+./c_zhtclient_threaded_test -t 10 -n neighbor -z zht.cfg -p TCP -i
+
+3. at least one of -i -r -l -a -c MUST be given.
